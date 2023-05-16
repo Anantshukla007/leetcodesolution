@@ -1,0 +1,38 @@
+2587. Rearrange Array to Maximize Prefix Score:=
+
+
+Approach:= the given question ask to return thr maximum prefix sum we can get from
+           the array by rearranging it to our favourable  order
+
+Intution:=
+
+* We will initially sort the array 
+
+* then initialize two variables one sum and one maximum sum
+
+* sum will store our current running sum 
+
+* where as the maximum sum will be storing our maximum prefix sum till found in the
+  array
+
+Program:=
+
+ class Solution{
+ public:
+     int maxScore(vector<int>&nums,int sum=0,int maximum_sum=0){
+         sort(nums.begin(),nums.end(),greater<int>());
+         for(auto num:nums)sum+=num,maximum_sum+=pre>0;
+         return maximum_sum;
+ }
+       
+}
+
+
+Topic tags:
+Array,Greedy,Sorting,Prefix Sum 
+
+
+Opinion:=
+ the question is an easy question should have been placed in easy category insted of 
+ medeium difficulty
+
