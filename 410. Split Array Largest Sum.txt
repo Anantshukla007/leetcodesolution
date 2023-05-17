@@ -1,0 +1,56 @@
+410. Split Array Largest Sum
+
+Intution:=
+The initial idea that comes to mind to solve in mind is to brute forcelly genrating the subvarys and checking validty and finding 
+the appropiate ans but not only it is very slow it can be imporved in a great form  so the new idea is to find the total sum of the 
+array and get the maximum element and then to binary search the range until which the condition are  satisfied and then to break the
+array off and increase the count
+
+Approach:=
+
+*firstly we create an function which will help us to find the position to break the arrays and then to calculate if it satisfies the condition for k partitions
+*Moving to the main function we find the best range by using the help of binary search
+
+Program:=
+
+class Solution {
+public:
+    bool is_valid(int mid,int k,vector<int>nums){
+        int sum=0;
+        int count=1;
+        for(int i=0;i<nums.size();i++){
+            sum+=nums[i];
+            if(sum>mid){
+                sum=nums[i];
+                count++;
+            }
+            if(count>k)return false;
+        }
+        return true;
+    }
+    int splitArray(vector<int>& nums, int k) {
+        int left=*max_element(nums.begin(),nums.end());
+        int sum1=0;
+        for(auto num:nums){
+            sum1+=num;
+        }
+        int ans=0;
+        while(left<=sum1){
+            int mid=left+(sum1-left)/2;
+            if(is_valid(mid,k,nums)){
+                ans=mid;
+                sum1=mid-1;
+            }
+            else
+                left=mid+1;
+        }
+        return ans;
+
+        
+    }
+};
+
+Opinion:=
+The question was an good solve as the initial idea was first not clear spend some time on finding the sum idea after that it was easy but was again stuck at finding the range part for the binary search
+so according to  me the question was a funn solve and good lower rank hard question
+
