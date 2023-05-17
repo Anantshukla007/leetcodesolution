@@ -1,0 +1,63 @@
+1074. Number of Submatrices That Sum to Target:=
+
+Intution:=
+* The first thing that comes to mind after seeing the question is that it is an 
+ sure shot prefix sum as we are searching for an certain sum in the matrix,so the
+ basic idea is to find prefix sum of the matrix and then find the numbers of submatrices equal to target\
+
+*The question is the next step of question subarray sum equal to k if not solve the question first it will help you to underastand the concept and questoion better
+  https://leetcode.com/problems/subarray-sum-equals-k/
+
+Approach:=
+
+*First we create an function to find the number of subarrays having sum equal to k
+*Then we move forward to our main function in which we will traverse the matricx and store thr prefix sum in in sum array
+*Then use the above function to calculate the count of our ans
+
+Program:=
+class Solution {
+public:
+    int solve(vector<int>&nums,int k){
+        unordered_map<int,int>mp;
+        mp[0]=1;
+        int curr=0,ans=0;
+        for(auto num:nums){
+            curr+=num;
+            int diff=curr-k;
+            if(mp.find(diff)!=mp.end()){
+               ans+=mp[diff];
+            }
+            mp[curr]++;
+        }
+        return ans;
+    }
+
+    int numSubmatrixSumTarget(vector<vector<int>>& matrix, int target) {
+        int ans=0;
+        for(int i=0;i<matrix.size();i++){
+
+            vector<int>sum(matrix[0].size(),0);
+
+            for(int j=i;j<matrix.size();j++){
+
+                for(int k=0;k<matrix[0].size();k++){
+
+                    sum[k]+=matrix[j][k];
+
+                }
+                ans+=solve(sum,target);
+            }
+        }
+        return ans;
+        
+             
+    }
+};
+
+Opinion:=
+The question should have been an mediun problem as the basic idea was totally based on an previous problem with slight variation but a good question to brush up the prefix  sum concept
+
+
+
+ 
+
